@@ -5,7 +5,6 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       http://example.com
  * @since      1.0.0
  *
  * @package    Recensie_Manager
@@ -17,6 +16,7 @@
 <?php
 global $recman_submitted, $recman_error;
 if (!$recman_submitted) {
+  // Not submitted, show form
   echo '<div>';
   if ($recman_error) {
     echo '<div>';
@@ -52,8 +52,7 @@ if (!$recman_submitted) {
 <?php
   echo '</div>';
 } else {
-?>
-  <p class="recmansubmitted">Uw review is ontvangen! Bedankt en tot snel!</p>
-<?php
+  // Submitted, show thank you message
+  echo '<p class="recmansubmitted">Uw review is ontvangen! Bedankt en tot snel!</p>';
 }
 ?>

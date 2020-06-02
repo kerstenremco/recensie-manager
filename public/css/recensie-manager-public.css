@@ -3,8 +3,25 @@
  * included in this file.
  */
 
+ /* FORM */
  #recman_form input {
   margin: 10px 0;
+  width: 100%;
+    height: 40px;
+    padding: 10px;
+}
+
+#recman_form textarea {
+  width: 100%;
+}
+
+#recman_form textarea {
+  width: 100%;
+}
+
+#recman_form p {
+  font-size: 15px;
+    line-height: 50px;
 }
 
 .recmansubmitted {
@@ -12,7 +29,7 @@
 }
 
 
-  /* use display:inline-flex to prevent whitespace issues. alternatively, you can put all the children of .rating-group on a single line */
+  /* STARS */
   .rating-group {
     display: inline-flex;
   }
@@ -60,28 +77,45 @@
     color: #ddd;
   }
 
-  /* The side navigation menu */
+  /* SIDEBAR */
 .sidenav {
   height: 100%; /* 100% Full-height */
   width: 0; /* 0 width - change this with JavaScript */
   position: fixed; /* Stay in place */
-  z-index: 1; /* Stay on top */
+  z-index: 9999999; /* Stay on top */
   top: 0; /* Stay at the top */
   right: 0;
-  background-color: #fff; /* Black*/
+  background-color: #fff;
+  box-shadow: 0 0 0 3px rgba(0,0,0,.1);
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
-/* The navigation menu links */
-.sidenav p {
+.sidebar-content {
   padding: 8px 8px 8px 32px;
+}
+
+.sidebar-content h3 {
+  margin: 20px 0;
+  font-size: 28px;
+  line-height: 30px;
+}
+
+/* The navigation menu links */
+.sidebar-content p {
   text-decoration: none;
-  font-size: 25px;
+  font-size: 20px;
+  line-height: 25px;;
   color: #818181;
   display: block;
   transition: 0.3s;
+}
+
+.sidebar-content-name {
+  font-style: italic;
+  font-size: 16px !important;
+  color: #818181;
 }
 
 /* When you mouse over the navigation links, change their color */
@@ -92,17 +126,21 @@
 /* Position and style the close button (top right corner) */
 .sidenav .closebtn {
   position: absolute;
-  top: 0;
+  top: 5;
   right: 25px;
   font-size: 36px;
   margin-left: 50px;
 }
 
+.hide-review {
+  display: none !important;
+}
+
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
-#main {
+/* #main {
   transition: margin-left .5s;
   padding: 20px;
-}
+} */
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
@@ -110,29 +148,9 @@
   .sidenav a {font-size: 18px;}
 }
 
-
-/* Float */
-.recman_float{
-	position:fixed;
-	max-width:300px !important;
-	height:60px;
-	bottom:40px;
-	right:0px;
-	background-color:#0C9;
-	color:#FFF;
-	border-radius:50px;
-	text-align:center;
-	box-shadow: 2px 2px 3px #999;
-}
-
-.recman_my-float{
-  margin-top: 15px;
-}
-
-/* nav */
+/* NAVIGATION IN SIDEBAR */
 .navbar {
   overflow: hidden;
-  background-color: #333;
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -146,12 +164,12 @@
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
-  width: 200px;
+  width: 150px;
 }
 
 .navbar a:hover {
   background: #f1f1f1;
-  color: black;
+  color: #f2f2f2;
 }
 
 .navbar a.active {
@@ -159,6 +177,27 @@
   color: white;
 }
 
-.hide-review {
-  display: none !important;
+/* FLOAT BUTTON  */
+.recman_float{
+	position:fixed;
+	width:300px !important;
+	height:60px;
+	bottom:40px;
+	right:-30px;
+	background-color: #000000;
+	color:#FFF;
+	border-radius:50px;
+	text-align:center;
+  box-shadow: 2px 2px 3px #999;
+  z-index: 999999;  
+}
+
+.recman_my-float{
+  margin-top: 15px;
+}
+
+@media screen and (max-width: 450px) {
+  .recman_float{
+    max-width: 200px !important;
+  }
 }

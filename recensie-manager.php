@@ -8,19 +8,16 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://example.com
  * @since             1.0.0
  * @package           Recensie_Manager
  *
  * @wordpress-plugin
  * Plugin Name:       Recensie Manager
- * Plugin URI:        http://example.com/recensie-manager-uri/
+ * Plugin URI:        http://remcokersten.nl/wordpress/recensie-manager/
  * Description:       Ontvang, beheer, bewerk en weergeef recensies van uw accomodatie
  * Version:           1.0.0
  * Author:            Remco Kersten
  * Author URI:        http://remcokersten.nl
- * License:           GPL-2.0+
- * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       recensie-manager
  * Domain Path:       /languages
  */

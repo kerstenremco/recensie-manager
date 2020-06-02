@@ -154,12 +154,12 @@ class Recensie_Manager {
 
 		$plugin_admin = new Recensie_Manager_Admin( $this->get_recensie_manager(), $this->get_version() );
 
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
-		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'init', $plugin_admin, 'register_post_type' );
+		$this->loader->add_action( 'init', $plugin_admin, 'handle_options_post' );
 		$this->loader->add_filter( 'enter_title_here', $plugin_admin, 'filter_title' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'apply_meta_boxes' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'metadata_save' );
+		$this->loader->add_action( 'admin_menu', $plugin_admin, 'register_options_page');
 	}
 
 	/**
@@ -175,9 +175,9 @@ class Recensie_Manager {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-		$this->loader->add_action( 'init', $plugin_public, 'register_shortcode_sidebar' );
 		$this->loader->add_action( 'init', $plugin_public, 'register_shortcode_form' );
 		$this->loader->add_action( 'wp_head', $plugin_public, 'capture_form' );
+		$this->loader->add_action ( 'wp_head', $plugin_public, 'inject_me' );
 
 	}
 
