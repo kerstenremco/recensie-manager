@@ -149,7 +149,6 @@ class Recensie_Manager {
 		$plugin_admin = new Recensie_Manager_Admin( $this->get_recensie_manager(), $this->get_version() );
 
 		$this->loader->add_action( 'init', $plugin_admin, 'register_post_type' );
-		$this->loader->add_action( 'init', $plugin_admin, 'handle_options_post' );
 		$this->loader->add_filter( 'enter_title_here', $plugin_admin, 'filter_title' );
 		$this->loader->add_action( 'add_meta_boxes', $plugin_admin, 'apply_meta_boxes' );
 		$this->loader->add_action( 'save_post', $plugin_admin, 'metadata_save' );
