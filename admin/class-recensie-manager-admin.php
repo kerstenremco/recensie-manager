@@ -316,3 +316,4 @@ class Recensie_Manager_Admin
 		}
 		return $input;
 	}
+}
