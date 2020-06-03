@@ -11,7 +11,7 @@
  * Plugin Name:       Recensie Manager
  * Plugin URI:        http://remcokersten.nl/wordpress/recensie-manager/
  * Description:       Ontvang, beheer, bewerk en weergeef recensies van uw accomodatie
- * Version:           1.0.0
+ * Version:           1.0.2
  * Author:            Remco Kersten
  * Author URI:        http://remcokersten.nl
  * Text Domain:       recensie-manager
