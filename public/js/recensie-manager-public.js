@@ -1,12 +1,14 @@
 var review = 1;
-/* Set the width of the side navigation to 250px */
 function openNav() {
-  document.getElementById("mySidenav").style.width = "300px";
+  let width = "400px";
+  if(window.innerWidth < 1024) {
+    width = "300px";
+  }
+  document.getElementById("recmanWidget").style.width = width;
 }
 
-/* Set the width of the side navigation to 0 */
 function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("recmanWidget").style.width = "0";
 }
 
 function nextReview() {

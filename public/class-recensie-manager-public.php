@@ -12,8 +12,6 @@
 /**
  * The public-facing functionality of the plugin.
  *
- * Defines the plugin name, version, and two examples hooks for how to
- * enqueue the public-facing stylesheet and JavaScript.
  *
  * @package    Recensie_Manager
  * @subpackage Recensie_Manager/public
@@ -108,33 +106,13 @@ class Recensie_Manager_Public
 		$recman_error = array();
 
 		// Check title
-		if (strlen($_POST['title']) > 0) {
-			if (strlen($_POST['title']) > 50) {
-				array_push($recman_error, 'Probeer de omschrijving van je verblijf iets korter te maken');
-			}
-		} else {
-			array_push($recman_error, 'Kunt u uw verblijf in maximaal 5 woorden omschrijven?');
-		}
+		if (strlen($_POST['title']) < 1) array_push($recman_error, get_option('recman_form_review_short'));
 		// Check name
-		if (strlen($_POST['guestname']) > 0) {
-			if (strlen($_POST['guestname']) > 50) {
-				array_push($recman_error, 'Uw achternaam mag uit maximaal 50 karakters bestaan');
-			}
-		} else {
-			array_push($recman_error, 'Wat is uw achternaam?');
-		}
+		if (strlen($_POST['guestname']) < 1) array_push($recman_error, get_option('recman_form_name_text'));
 		// Check review
-		if (strlen($_POST['review']) > 0) {
-			if (strlen($_POST['review']) > 1000) {
-				array_push($recman_error, 'Uw review is iets te lang');
-			}
-		} else {
-			array_push($recman_error, 'Wat vond u van uw verblijf?');
-		}
+		if (strlen($_POST['review']) < 1) array_push($recman_error, get_option('recman_form_review_text'));
 		// Check stars
-		if ($_POST['rating3'] < 1 || $_POST['rating3'] > 5) {
-			array_push($recman_error, 'Hoeveel sterren geeft u uw verblijf bij ons?');
-		}
+		if (!$_POST['rating3']) array_push($recman_error, get_option('recman_form_stars'));
 
 		if ($recman_error == null) {
 			$post = array(
@@ -148,12 +126,14 @@ class Recensie_Manager_Public
 				)
 			);
 			wp_insert_post($post);
+			$message = 'Er is een nieuwe recensie geplaatst door '.$post['meta_input']['name'].'. De recensie is te vinden in de recensie manager op je WordPress website.';
+			wp_mail(get_option('admin_email'), 'Nieuwe recensie', $message);
 			$recman_submitted = true;
 		}
 	}
 
 	/**
-	 * Inject sidebar in each page
+	 * Inject sidebar
 	 * Only if set in settings
 	 *
 	 * @since    1.0.0

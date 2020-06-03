@@ -39,38 +39,45 @@ class Recensie_Manager_Admin
 	 */
 	private $version;
 
-	private $options = array(
+	/**
+	 * The options of this plugin
+	 * format: 'plugin id'=>['title', 'type input', 'options (in case type is radio)', 'filter callback', 'default value, used for install']
+	 * 
+	 * @since    1.0.0
+	 * @access   public
+	 * @var      array    $options    The options of this plugin
+	 */
+	static public $options = array(
 		'recman_display' => array('Laat widget zien op', 'radio', array(
 			'Alleen op specifieke pagina\'s' => 'shortcode',
 			'Op alle pagina\'s' => 'all'
-		), null),
-		'recman_nav_color' => array('(Navigatieknoppen widget) Kleur', 'text', null, 'sanitize_option_color'),
-		'recman_nav_text_color' => array('(Navigatieknoppen widget) Tekstkleur', 'text', null, 'sanitize_option_color'),
-		'recman_button_text' => array('(floating button) Tekst', 'text', null, null),
-		'recman_button_icon' => array('(floating button) Icoon', 'text', null, null),
-		'recman_button_color' => array('(floating button) Kleur', 'text', null, 'sanitize_option_color'),
-		'recman_button_text_color' => array('(floating button) tekstkleur', 'text', null, 'sanitize_option_color'),
-		'recman_button_text_size' => array('(floating button) Tekstgrootte button', 'text', null, 'sanitize_option_fontsize'),
-		'recman_widget_title_size' => array('(widget) Tekstgrootte reviewtitel', 'text', null, 'sanitize_option_fontsize'),
-		'recman_widget_title_letterspacing' => array('(widget) Letterspacing reviewtitel', 'text', null, 'sanitize_option_fontsize'),
-		'recman_widget_title_color' => array('(widget) Tekstkleur reviewtitel', 'text', null, 'sanitize_option_color'),
-		'recman_widget_body_size' => array('(widget) Tekstgrootte review', 'text', null, 'sanitize_option_fontsize'),
-		'recman_widget_body_color' => array('(widget) Tekstkleur review', 'text', null, 'sanitize_option_color'),
-		'recman_widget_name_size' => array('(widget) Tekstgrootte naam', 'text', null, 'sanitize_option_fontsize'),
-		'recman_widget_name_color' => array('(widget) Tekstkleur naam', 'text', null, 'sanitize_option_color'),
-		'recman_widget_stars_size' => array('(widget) Grootte in px sterren', 'text', null, 'sanitize_option_fontsize'),
-		'recman_widget_stars_color' => array('(widget) Kleur sterren', 'text', null, 'sanitize_option_color'),
-		'recman_form_name_text' => array('(formulier) Tekst naam', 'text', null, null),
-		'recman_form_review_text' => array('(formulier) Tekst review', 'text', null, null),
-		'recman_form_review_short' => array('(formulier) Tekst review in één zin', 'text', null, null),
-		'recman_form_stars' => array('(formulier) Tekst sterren', 'text', null, null),
-		'recman_form_stars_color' => array('(formulier) Kleur sterren', 'text', null, 'sanitize_option_color'),
-		'recman_form_stars_size' => array('(formulier) Grootte in px sterren', 'text', null, 'sanitize_option_fontsize'),
-		'recman_form_submit_text' => array('(formulier) Tekst button', 'text', null, null),
-		'recman_form_text_size' => array('(formulier) Tekstgrootte button', 'text', null, 'sanitize_option_fontsize'),
-		'recman_form_submit_text_letterspacing' => array('(formulier) letterspacing button', 'text', null, 'sanitize_option_fontsize'),
-		'recman_form_submit_color' => array('(formulier) Kleur button', 'text', null, 'sanitize_option_color'),
-		'recman_form_submitted_text' => array('(formulier) Tekst na inzenden formulier', 'text', null, null)
+		), null, 'all'),
+		'recman_nav_color' => array('(Navigatieknoppen widget) Kleur', 'text', null, 'sanitize_option_color', '#ff6781'),
+		'recman_nav_text_color' => array('(Navigatieknoppen widget) Tekstkleur', 'text', null, 'sanitize_option_color', '#ffffff'),
+		'recman_button_text' => array('(floating button) Tekst', 'text', null, null, 'Lees recensies'),
+		'recman_button_icon' => array('(floating button) Icoon', 'text', null, null, 'fa-star'),
+		'recman_button_color' => array('(floating button) Kleur', 'text', null, 'sanitize_option_color', '#cd2653'),
+		'recman_button_text_color' => array('(floating button) tekstkleur', 'text', null, 'sanitize_option_color', '#ffffff'),
+		'recman_button_text_size' => array('(floating button) Tekstgrootte button', 'text', null, 'sanitize_option_fontsize', '18'),
+		'recman_widget_title_size' => array('(widget) Tekstgrootte reviewtitel', 'text', null, 'sanitize_option_fontsize', '40'),
+		'recman_widget_title_letterspacing' => array('(widget) Letterspacing reviewtitel', 'text', null, 'sanitize_option_fontsize', '0'),
+		'recman_widget_title_color' => array('(widget) Tekstkleur reviewtitel', 'text', null, 'sanitize_option_color', '#000000'),
+		'recman_widget_body_size' => array('(widget) Tekstgrootte review', 'text', null, 'sanitize_option_fontsize', '20'),
+		'recman_widget_body_color' => array('(widget) Tekstkleur review', 'text', null, 'sanitize_option_color', '#818181'),
+		'recman_widget_name_size' => array('(widget) Tekstgrootte naam', 'text', null, 'sanitize_option_fontsize', '14'),
+		'recman_widget_name_color' => array('(widget) Tekstkleur naam', 'text', null, 'sanitize_option_color', '#818181'),
+		'recman_widget_stars_size' => array('(widget) Grootte in px sterren', 'text', null, 'sanitize_option_fontsize', '20'),
+		'recman_widget_stars_color' => array('(widget) Kleur sterren', 'text', null, 'sanitize_option_color', '#F0AB00'),
+		'recman_form_name_text' => array('(formulier) Tekst naam', 'text', null, null, 'Wat is uw achternaam?'),
+		'recman_form_review_text' => array('(formulier) Tekst review', 'text', null, null, 'Wat vond u van uw verblijf bij ons?'),
+		'recman_form_review_short' => array('(formulier) Tekst review in één zin', 'text', null, null, 'Kunt u uw verblijf in één zin omschrijven?'),
+		'recman_form_stars' => array('(formulier) Tekst sterren', 'text', null, null, 'Hoeveel sterren geeft u uw verblijf?'),
+		'recman_form_stars_size' => array('(formulier) Grootte in px sterren', 'text', null, 'sanitize_option_fontsize', '34'),
+		'recman_form_submit_text' => array('(formulier) Tekst button', 'text', null, null, 'VERSTUREN'),
+		'recman_form_text_size' => array('(formulier) Tekstgrootte button', 'text', null, 'sanitize_option_fontsize', '20'),
+		'recman_form_submit_text_letterspacing' => array('(formulier) letterspacing button', 'text', null, 'sanitize_option_fontsize', '1'),
+		'recman_form_submit_color' => array('(formulier) Kleur button', 'text', null, 'sanitize_option_color', '#cd2653'),
+		'recman_form_submitted_text' => array('(formulier) Tekst na inzenden formulier', 'text', null, null, 'Hartelijk bedankt voor uw review, en graag tot snel!')
 	);
 
 	/**
@@ -111,9 +118,10 @@ class Recensie_Manager_Admin
 	}
 
 	/**
-	 * Apply filter for custom review post type title
+	 * Filter for custom review post type title
 	 *
 	 * @since    1.0.0
+	 * @param      string    $title       Original title
 	 */
 	public function filter_title($title)
 	{
@@ -137,6 +145,7 @@ class Recensie_Manager_Admin
 
 	/**
 	 * Apply metaboxes content
+	 * Used as callback function in apply_meta_boxes
 	 *
 	 * @since    1.0.0
 	 */
@@ -160,9 +169,11 @@ class Recensie_Manager_Admin
 	}
 
 	/**
-	 * Apply metaboxes content
+	 * Apply metaboxes content for widget in edit page (to enable or disable widget)
+	 * Used as callback function in apply_meta_boxes
 	 *
 	 * @since    1.0.0
+	 * @param      object    $post       The post that is currently editing
 	 */
 	public function apply_metabox_content_widget($post)
 	{
@@ -174,9 +185,10 @@ class Recensie_Manager_Admin
 	}
 
 	/**
-	 * Save metadate on post
+	 * Save metadate on post (new review in admin panel)
 	 *
 	 * @since    1.0.0
+	 * @param      string    $post_id      The ID of the edited post
 	 */
 	function metadata_save($post_id)
 	{
@@ -216,28 +228,37 @@ class Recensie_Manager_Admin
 	function register_options_page()
 	{
 		// Register options
-		foreach($this->options as $key=>$option) {
+		foreach($this::$options as $key=>$option) {
 			$args = array();
 			if($option[3]) $args['sanitize_callback'] = array($this, $option[3]);
 			register_setting('general', $key, $args);
 		}
 		// Add settings field
 		add_settings_section('recman_options', 'Recensie Manager', array($this, 'show_options_page_subheading'), 'general');
-		foreach($this->options as $key=>$option) {
+		foreach($this::$options as $key=>$option) {
 			add_settings_field($key, $option[0], array($this, 'get_optionfield_display'), 'general', 'recman_options', array($key, $option));
 		}
 	}
 
 	/**
-	 * Render settings page
+	 * Render settings page heading
+	 * Used as callback function by register_options_page
 	 *
 	 * @since    1.0.0
 	 */
 	function show_options_page_subheading()
 	{
+		echo '<p>Voor de optie "(floating button) Icoon" kan het icoon in de floating button worden aangepast. De lijst met beschikbare iconen kan worden geraadpleegd op <a href="https://fontawesome.com/v4.7.0/cheatsheet/" target="_blank">Font Awesome 4.7</a></p>';
 		echo '<i>Bij problemen met de recensie manager, neem contact op met Remco Kersten</i>';
 	}
 
+	/**
+	 * Echo input field for option
+	 * Used by reguster_options_page as callback funtion
+	 *
+	 * @since    1.0.0
+	 * @param      array    $option      The requested option
+	 */
 	function get_optionfield_display($option)
 	{
 		// Options. Set by activation!
@@ -258,6 +279,13 @@ class Recensie_Manager_Admin
 			}
 	}
 
+		/**
+	 * Sanitize color option input
+	 * Return previous option if not valid and show warning
+	 *
+	 * @since    1.0.0
+	 * @param      string    $input      Passed input
+	 */
 	function sanitize_option_color($input)
 	{
 		// Remove # if in input
@@ -265,31 +293,26 @@ class Recensie_Manager_Admin
 		if (!is_numeric($input[0])) $input = substr($input, 1);
 		if (strlen($input) !== 6) {
 			$input = get_option($option);
-			add_settings_error($option, '1', 'Recensie Manager: Geen geldige kleur ingevoerd voor optie <i>'.$this->options[$option][0].'</i>. Voer een kleurcode als volgt in: #123456');
+			add_settings_error($option, '1', 'Recensie Manager: Geen geldige kleur ingevoerd voor optie <i>'.$this::$options[$option][0].'</i>. Voer een kleurcode als volgt in: #123456');
 		} else {
 			$input = '#' . $input;
 		}
 		return $input;
 	}
 
+	/**
+	 * Sanitize fontsize option input
+	 * Return previous option if not valid and show warning
+	 *
+	 * @since    1.0.0
+	 * @param      string    $input      Passed input
+	 */
 	function sanitize_option_fontsize($input)
 	{
 		global $option;
 		if (!is_numeric($input)) {
 			$input = get_option($option);
-			add_settings_error($option, '1', 'Recensie Manager: Geen geldige fontsize ingevoerd voor optie <i>'.$this->options[$option][0].'</i>. Voer een fontsize als volgt in: 18px');
+			add_settings_error($option, '1', 'Recensie Manager: Geen geldige fontsize ingevoerd voor optie <i>'.$this::$options[$option][0].'</i>. Voer een fontsize in pixels als volgt in: 18 (dus zonder px te vermelden)');
 		}
 		return $input;
 	}
-	//sanitize_option_fontsize
-
-	/**
-	 * Handle save input
-	 *
-	 * @since    1.0.0
-	 */
-	function handle_options_post()
-	{
-		if (!array_key_exists('recman_options_submit', $_POST)) return;
-	}
-}

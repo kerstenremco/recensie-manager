@@ -29,7 +29,7 @@ foreach ($reviews as $review) {
 }
 ?>
 
-<div id="mySidenav" class="sidenav" style="width: 0px;">
+<div id="recmanWidget" class="recmanWidget" style="width: 0px;">
   <a href="javascript:void(0)" class="closebtn" onclick="closeNav()" style="color: <?php echo get_option('recman_button_color'); ?>">&times;</a>
   <?php
   // Load all reviews in divs for frontend
@@ -37,32 +37,26 @@ foreach ($reviews as $review) {
   $count = 1;
   $dont_show = '';
   foreach ($reviews_to_show as $review) {
-    echo '<div class="sidebar-content '.$dont_show.'" id="recman-review-'.$count.'">';
-    echo '<h3>' . $review->post_title . '</h3>';
-    echo '<p>'.get_post_meta($review->ID, 'review', true).'</p>';
+    echo '<div class="recmanWidget-content '.$dont_show.'" id="recman-review-'.$count.'">';
+    echo '<h3 style="font-size: '.get_option('recman_widget_title_size').'px; letter-spacing: '.get_option('recman_widget_title_letterspacing').'px; color: '.get_option('recman_widget_title_color').'">' . $review->post_title . '</h3>';
+    echo '<p style="font-size: '.get_option('recman_widget_body_size').'px; color: '.get_option('recman_widget_body_color').'">'.get_post_meta($review->ID, 'review', true).'</p>';
     $stars = get_post_meta($review->ID, 'stars', true);
-    for($i=0; $i < $stars; $i++) echo '<i class="rating__icon rating__icon--star fa fa-star"></i>';
+    for($i=0; $i < $stars; $i++) echo '<i class="rating__icon rating__icon--star fa fa-star" style="font-size: '.get_option('recman_widget_stars_size').'px; color: '.get_option('recman_widget_stars_color').';"></i>';
     echo '<br />';
-    echo '<p class="sidebar-content-name">'.get_post_meta($review->ID, 'name', true).'</p>';
+    echo '<p class="sidebar-content-name" style="font-size: '.get_option('recman_widget_name_size').'px; color: '.get_option('recman_widget_name_color').'">'.get_post_meta($review->ID, 'name', true).'</p>';
     echo '</div>';
     $count++;
     $dont_show = 'hide-review';
   }
   ?>
   
-  <div class="navbar">
-    <a href="#" onClick="prevReview()" style="background-color: <?php echo get_option('recman_nav_color'); ?>">Vorige</a>
-    <a href="#" onClick="nextReview()" style="background-color: <?php echo get_option('recman_nav_color'); ?>">Volgende</a>
+  <div class="recmanWidget-navbar">
+    <a href="#" class="recmanWidget-navbar-link" onClick="prevReview()" style="<?php echo 'background-color: '.get_option('recman_nav_color').'; color: '.get_option('recman_nav_text_color').';'; ?>">Vorige</a>
+    <a href="#" class="recmanWidget-navbar-link" onClick="nextReview()" style="<?php echo 'background-color: '.get_option('recman_nav_color').'; color: '.get_option('recman_nav_text_color').';'; ?>">Volgende</a>
   </div>
 </div>
 
 <!-- Use any element to open the sidenav -->
-<a href="#" class="recman_float" onclick="openNav()" style="background-color: <?php echo get_option('recman_button_color'); ?>">
-  <p class="recman_my-float"><?php echo get_option('recman_button_text'); ?></p>
+<a href="#" class="recman_float" onclick="openNav()" style="<?php $fontsize = get_option('recman_button_text_size'); echo 'background-color: '.get_option('recman_button_color').'; padding-top: '.$fontsize.'px; padding-bottom: '.$fontsize.'px; font-size: '.$fontsize.'px; color: '.get_option('recman_button_text_color').';'; ?>">
+  <i class="fa <?php echo get_option('recman_button_icon'); ?>"></i><span><?php echo get_option('recman_button_text'); ?></span>
 </a>
-
-<!-- Add all page content inside this div if you want the side nav to push page content to the right (not used if you only want the sidenav to sit on top of the page 
-<div id="main">
-  ...
-</div>
--->
