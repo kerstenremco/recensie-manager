@@ -1,3 +1,10 @@
+/*
+* Prefixed by https://autoprefixer.github.io
+* PostCSS: v7.0.29,
+* Autoprefixer: v9.7.6
+* Browsers: last 4 version
+*/
+
  /* FORM */
  #recman_form input {
   margin: 10px 0;
@@ -20,6 +27,8 @@
 
   /* STARS */
   .rating-group {
+    display: -webkit-inline-box;
+    display: -ms-inline-flexbox;
     display: inline-flex;
   }
   
@@ -74,9 +83,12 @@
   top: 0; /* Stay at the top */
   right: 0;
   background-color: #fff;
-  box-shadow: 0 0 0 3px rgba(0,0,0,.1);
+  -webkit-box-shadow: 0 0 0 3px rgba(0,0,0,.1);
+          box-shadow: 0 0 0 3px rgba(0,0,0,.1);
   overflow-x: hidden; /* Disable horizontal scroll */
   padding-top: 60px; /* Place content 60px from the top */
+  -webkit-transition: 0.5s;
+  -o-transition: 0.5s;
   transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
@@ -92,6 +104,8 @@
 .recmanWidget-content p {
   text-decoration: none;
   display: block;
+  -webkit-transition: 0.3s;
+  -o-transition: 0.3s;
   transition: 0.3s;
   max-height: 50vh;
   overflow: scroll;
@@ -131,6 +145,8 @@
   position: absolute;
   bottom: 0;
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -139,7 +155,9 @@
   padding: 14px 16px;
   text-decoration: none;
   font-size: 17px;
-  flex: 1;
+  -webkit-box-flex: 1;
+      -ms-flex: 1;
+          flex: 1;
 }
 
 /* FLOAT BUTTON  */
@@ -149,7 +167,8 @@
 	right:-30px;
 	border-radius:50px;
 	text-align:center;
-  box-shadow: 2px 2px 3px #999;
+  -webkit-box-shadow: 2px 2px 3px #999;
+          box-shadow: 2px 2px 3px #999;
   z-index: 999999;  
   text-decoration: none;
   padding-left: 80px;
