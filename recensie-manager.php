@@ -27,7 +27,7 @@ if ( ! defined( 'WPINC' ) ) {
  * Currently plugin version.
  * Start at version 1.0.0 and use SemVer - https://semver.org
  */
-define( 'RECENSIE_MANAGER_VERSION', '1.0.0' );
+define( 'RECENSIE_MANAGER_VERSION', '1.0.2' );
 
 /**
  * The code that runs during plugin activation.
