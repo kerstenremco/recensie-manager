@@ -19,7 +19,7 @@ if (!$recman_submitted) {
   // Not submitted, show form
   echo '<div>';
   if ($recman_error) {
-    echo '<div id="recman-error">';
+    echo '<div id="recman-error" style="color: '.get_option('recman_form_text_color').';">';
     echo '<ul>';
     foreach ($recman_error as $error) {
       echo '<li>' . $error . '</li>';
@@ -32,7 +32,7 @@ if (!$recman_submitted) {
     <input type="text" id="guestname" name="guestname" placeholder="<?php echo get_option('recman_form_name_text'); ?>" value="<?php echo $_POST['guestname']; ?>" />
     <textarea rows="8" id="review" name="review" placeholder="<?php echo get_option('recman_form_review_text'); ?>"><?php echo $_POST['review']; ?></textarea>
     <input type="text" id="title" name="title" placeholder="<?php echo get_option('recman_form_review_short'); ?>" value="<?php echo $_POST['title']; ?>" />
-    <p class="desc"><?php echo get_option('recman_form_stars'); ?></p>
+    <p class="desc" style="color: <?php echo get_option('recman_form_text_color'); ?>;"><?php echo get_option('recman_form_stars'); ?></p>
     <div class="rating-group">
       <input disabled checked class="rating__input rating__input--none" name="rating3" id="rating3-none" value="0" type="radio">
       <label aria-label="1 star" class="rating__label" for="rating3-1" style="font-size: <?php echo get_option('recman_form_stars_size'); ?>px;"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
@@ -46,13 +46,13 @@ if (!$recman_submitted) {
       <label aria-label="5 stars" class="rating__label" for="rating3-5" style="font-size: <?php echo get_option('recman_form_stars_size'); ?>px;"><i class="rating__icon rating__icon--star fa fa-star"></i></label>
       <input class="rating__input" name="rating3" id="rating3-5" value="5" type="radio" <?php if ($_POST['rating3'] == 5) echo 'checked'; ?>>
     </div><br />
-    <input type="submit" name="recman_submit" style="<?php echo 'font-size: '.get_option('recman_form_text_size').'px; letter-spacing: '.get_option('recman_form_submit_text_letterspacing').'px; background-color: '.get_option('recman_form_submit_color').';'; ?>" value="<?php echo get_option('recman_form_submit_text'); ?>" />
+    <input type="submit" name="recman_submit" style="<?php echo 'font-size: '.get_option('recman_form_text_size').'px; letter-spacing: '.get_option('recman_form_submit_text_letterspacing').'px; background-color: '.get_option('recman_form_submit_color').'; color: '.get_option('recman_form_submit_text_color').';'; ?>" value="<?php echo get_option('recman_form_submit_text'); ?>" />
   </form>
 <?php
 
   echo '</div>';
 } else {
   // Submitted, show thank you message
-  echo '<p class="recmansubmitted">'.get_option('recman_form_submitted_text').'</p>';
+  echo '<p class="recmansubmitted" style="color: '.get_option('recman_form_text_color').';">'.get_option('recman_form_submitted_text').'</p>';
 }
 ?>

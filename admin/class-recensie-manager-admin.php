@@ -77,7 +77,9 @@ class Recensie_Manager_Admin
 		'recman_form_text_size' => array('(formulier) Tekstgrootte button', 'text', null, 'sanitize_option_fontsize', '20'),
 		'recman_form_submit_text_letterspacing' => array('(formulier) letterspacing button', 'text', null, 'sanitize_option_fontsize', '1'),
 		'recman_form_submit_color' => array('(formulier) Kleur button', 'text', null, 'sanitize_option_color', '#cd2653'),
+		'recman_form_submit_text_color' => array('(formulier) Kleur tekst button', 'text', null, 'sanitize_option_color', '#ffffff'),
 		'recman_form_submitted_text' => array('(formulier) Tekst na inzenden formulier', 'text', null, null, 'Hartelijk bedankt voor uw review, en graag tot snel!'),
+		'recman_form_text_color' => array('(formulier) Kleur tekst in formulier', 'text', null, 'sanitize_option_color', '#000000'),
 		'recman_mail' => array('Stuur e-mail bij nieuwe recensie aan', 'text', null, 'sanitize_option_email', '')
 	);
 
