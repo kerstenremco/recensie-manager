@@ -1,10 +1,6 @@
 var review = 1;
 function openNav() {
-  let width = "400px";
-  if(window.innerWidth < 1024) {
-    width = "300px";
-  }
-  document.getElementById("recmanWidget").style.width = width;
+  document.getElementById("recmanWidget").style.width = "300px";
 }
 
 function closeNav() {
