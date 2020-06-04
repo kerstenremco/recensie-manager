@@ -10,18 +10,25 @@
   margin: 10px 0;
   width: 100%;
   padding: 10px;
+  font-size: 14px;
 }
 
 #recman_form textarea {
   width: 100%;
+  font-size: 14px;
 }
 
-#recman_form textarea {
-  width: 100%;
+#recman_form p {
+  margin: 10px 0;
 }
 
 .recmansubmitted {
   text-align: center;
+}
+
+#recman-error {
+  border: red 1px dotted;
+  padding: 10px;
 }
 
 
@@ -30,6 +37,7 @@
     display: -webkit-inline-box;
     display: -ms-inline-flexbox;
     display: inline-flex;
+    margin-bottom: 20px;
   }
   
   /* make hover effect work properly in IE */
@@ -94,6 +102,7 @@
 
 .recmanWidget-content {
   padding: 8px 8px 8px 32px;
+  font-weight: 400;
 }
 
 .recmanWidget-content h3 {

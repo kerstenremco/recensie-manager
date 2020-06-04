@@ -19,7 +19,7 @@ if (!$recman_submitted) {
   // Not submitted, show form
   echo '<div>';
   if ($recman_error) {
-    echo '<div>';
+    echo '<div id="recman-error">';
     echo '<ul>';
     foreach ($recman_error as $error) {
       echo '<li>' . $error . '</li>';
