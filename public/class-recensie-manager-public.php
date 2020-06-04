@@ -118,17 +118,28 @@ class Recensie_Manager_Public
 			$post = array(
 				'post_title' => wp_strip_all_tags($_POST['title']),
 				'post_type' => 'recman_review',
-				'post_status' => 'pending',
+				'post_status' => 'publish',
 				'meta_input' => array(
 					'name' => wp_strip_all_tags($_POST['guestname']),
 					'review' => wp_strip_all_tags($_POST['review']),
 					'stars' => wp_strip_all_tags($_POST['rating3'])
 				)
 			);
+			// Check post not exist (prevent repost on refresh)
+			$lastpost = get_posts(array('post_type' => 'recman_review', 'title' => $post['post_title'], 'numberposts' => 1));
+			if ($lastpost) {
+				if (get_post_meta($lastpost[0]->ID, 'review', true) === $post['meta_input']['review']) {
+					if (get_post_meta($lastpost[0]->ID, 'name', true) === $post['meta_input']['name']) {
+						$recman_submitted = true;
+						return;
+					}
+				}
+			}
+			// Post
 			wp_insert_post($post);
 			$email_to = get_option('recman_mail');
-			if($email_to) {
-				$message = 'Er is een nieuwe recensie geplaatst door '.$post['meta_input']['name'].'. De recensie is te vinden in de recensie manager op je WordPress website.';
+			if ($email_to) {
+				$message = 'Er is een nieuwe recensie geplaatst door ' . $post['meta_input']['name'] . '. De recensie is te vinden in de recensie manager op je WordPress website.';
 				wp_mail($email_to, 'Nieuwe recensie', $message);
 			}
 			$recman_submitted = true;
