@@ -126,8 +126,11 @@ class Recensie_Manager_Public
 				)
 			);
 			wp_insert_post($post);
-			$message = 'Er is een nieuwe recensie geplaatst door '.$post['meta_input']['name'].'. De recensie is te vinden in de recensie manager op je WordPress website.';
-			wp_mail(get_option('admin_email'), 'Nieuwe recensie', $message);
+			$email_to = get_option('recman_mail');
+			if($email_to) {
+				$message = 'Er is een nieuwe recensie geplaatst door '.$post['meta_input']['name'].'. De recensie is te vinden in de recensie manager op je WordPress website.';
+				wp_mail($email_to, 'Nieuwe recensie', $message);
+			}
 			$recman_submitted = true;
 		}
 	}

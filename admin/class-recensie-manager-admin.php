@@ -77,7 +77,8 @@ class Recensie_Manager_Admin
 		'recman_form_text_size' => array('(formulier) Tekstgrootte button', 'text', null, 'sanitize_option_fontsize', '20'),
 		'recman_form_submit_text_letterspacing' => array('(formulier) letterspacing button', 'text', null, 'sanitize_option_fontsize', '1'),
 		'recman_form_submit_color' => array('(formulier) Kleur button', 'text', null, 'sanitize_option_color', '#cd2653'),
-		'recman_form_submitted_text' => array('(formulier) Tekst na inzenden formulier', 'text', null, null, 'Hartelijk bedankt voor uw review, en graag tot snel!')
+		'recman_form_submitted_text' => array('(formulier) Tekst na inzenden formulier', 'text', null, null, 'Hartelijk bedankt voor uw review, en graag tot snel!'),
+		'recman_mail' => array('Stuur e-mail bij nieuwe recensie aan', 'text', null, 'sanitize_option_email', '')
 	);
 
 	/**
@@ -313,6 +314,24 @@ class Recensie_Manager_Admin
 		if (!is_numeric($input)) {
 			$input = get_option($option);
 			add_settings_error($option, '1', 'Recensie Manager: Geen geldige fontsize ingevoerd voor optie <i>'.$this::$options[$option][0].'</i>. Voer een fontsize in pixels als volgt in: 18 (dus zonder px te vermelden)');
+		}
+		return $input;
+	}
+
+	/**
+	 * Sanitize email
+	 * Return previous option if not valid and show warning
+	 *
+	 * @since    1.0.0
+	 * @param      string    $input      Passed input
+	 */
+	function sanitize_option_email($input)
+	{
+		if($input == null) return $input;
+		global $option;
+		if (!filter_var($input, FILTER_VALIDATE_EMAIL)) {
+			$input = get_option($option);
+			add_settings_error($option, '1', 'Recensie Manager: Geen geldig emailadres ingevoerd.');
 		}
 		return $input;
 	}
