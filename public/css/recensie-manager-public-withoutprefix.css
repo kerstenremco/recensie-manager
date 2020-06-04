@@ -103,7 +103,7 @@
   display: block;
   transition: 0.3s;
   max-height: 50vh;
-  overflow: scroll;
+  overflow: auto;
 }
 
 .recmanWidget-content-name {
