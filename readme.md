@@ -27,4 +27,5 @@ Add the shortcode `recman_form` to the page where the review form should be disp
 ## Screenshots
 
 ![alt text](https://github.com/kerstenremco/recensie-manager/raw/master/widget%20wordpress.png "screenshot")
-![alt text](https://github.com/kerstenremco/RemcoCard/raw/master/edit%20reviews.png "screenshot")
+
+![alt text](https://github.com/kerstenremco/recensie-manager/raw/master/edit%20reviews.png "screenshot2")
